@@ -43,21 +43,20 @@ public class Controller {
 
     // Переменная считает количество кругов
     private byte iC = 0;
-    // Переменная-индекс для массива arrCircle
+    // Массив для сохранения объектов
+    private PrCircle[] arrCircle = new PrCircle[20];
     private byte jC = 0;
-    // Массив для сохранения координат и радиуса всех созданных кругов
-    private double[] arrCircle = new double[100];
     // Переменная для того, чтобы удалять содержимое массива arrCircle, после нажатия кнопки "Удалить"
     private byte dC = 0;
 
     private byte iR = 0;
-    private byte jR = 0;
-    private double[] arrRect = new double[100];
+    private PrSquare[] arrSquare = new PrSquare[20];
+    private byte jS = 0;
     private byte dR = 0;
 
     private byte iL = 0;
+    private PrLine[] arrLine = new PrLine[20];
     private byte jL = 0;
-    private double[] arrLine = new double[100];
     private byte dL = 0;
 
     // Метод создает элементы в comboBoxCreate
@@ -132,13 +131,6 @@ public class Controller {
                 double x = Double.parseDouble(coordinateX);
                 double y = Double.parseDouble(coordinateY);
                 double r = Double.parseDouble(radius);
-                // Добавляем координаты и радиус в массив
-                arrCircle[jC] = x;
-                ++jC;
-                arrCircle[jC] = y;
-                ++jC;
-                arrCircle[jC] = r;
-                ++jC;
 
                 createCircle(x, y, r);
             } catch (Exception e) {
@@ -153,20 +145,18 @@ public class Controller {
         // Объект для создания примитива на холсте
         GraphicsContext gc = c.getGraphicsContext2D();
         circle.show(gc);
+        arrCircle[jC] = circle;
+        ++jC;
         ++iC;
         dialog.setText("Круг №" + iC + " создан!");
     }
 
     // Создаем круг с рандомными значениями
     public void createCircleEmpty(){
-        PrCircle circle = new PrCircle(1);
+        PrCircle circle = new PrCircle();
         GraphicsContext gc = c.getGraphicsContext2D();
         circle.show(gc);
-        arrCircle[jC] = circle.getCoordinateX();
-        ++jC;
-        arrCircle[jC] = circle.getCoordinateY();
-        ++jC;
-        arrCircle[jC] = circle.getRadius();
+        arrCircle[jC] = circle;
         ++jC;
 
         ++iC;
@@ -175,40 +165,33 @@ public class Controller {
 
     // Функция по перемещению круга
     public void moveToCircle(){
-        double x, y, r;
-        PrCircle circle = new PrCircle();
         GraphicsContext gc = c.getGraphicsContext2D();
         String coordinateX = layoutMoveX.getText();
         String coordinateY = layoutMoveY.getText();
         double addX = Double.parseDouble(coordinateX);
         double addY = Double.parseDouble(coordinateY);
         deleteCircle();
+        PrCircle circle;
         for (int k = 0; k < jC; k++) {
-            x = (arrCircle[k] + addX);
-            arrCircle[k] = x;
-            y = (arrCircle[++k] + addY);
-            arrCircle[k] = y;
-            r = arrCircle[++k];
-
-            circle.move(x, y, r, gc);
+            circle = arrCircle[k];
+            circle.move(addX, addY, gc);
         }
     }
 
     // Метод удаляет круг
     public void deleteCircle(){
-        PrCircle circle = new PrCircle();
+        PrCircle circle;
+        GraphicsContext gc = c.getGraphicsContext2D();
         for (int k = 0; k < jC; k++) {
-            circle.setCoordinateX(arrCircle[k]);
-            circle.setCoordinateY(arrCircle[++k]);
-            circle.setRadius(arrCircle[++k]+1);
-            GraphicsContext gc = c.getGraphicsContext2D();
+            circle = arrCircle[k];
             circle.delete(gc);
         }
         // Если была нажата кнопка "Удалить" то очищаем массив
         if(dC == 1){
             for (int k = 0; k < jC; k++) {
-                arrCircle[k] = 0;
+                arrCircle[k] = null;
             }
+            jC = 0;
             dC = 0;
         }
     }
@@ -233,13 +216,6 @@ public class Controller {
                 double x = Double.parseDouble(coordinateX);
                 double y = Double.parseDouble(coordinateY);
                 double s = Double.parseDouble(size);
-                // Добавляем координаты и радиус в массив
-                arrRect[jR] = x;
-                ++jR;
-                arrRect[jR] = y;
-                ++jR;
-                arrRect[jR] = s;
-                ++jR;
 
                 createRect(x, y, s);
             } catch (Exception e) {
@@ -252,59 +228,51 @@ public class Controller {
         PrSquare square = new PrSquare(x,y,s);
         GraphicsContext gc = c.getGraphicsContext2D();
         square.show(gc);
+        arrSquare[jS] = square;
+        ++jS;
+
         ++iR;
         dialog.setText("Квадрат №" + iR + " создан!");
     }
 
     public void createRectEmpty(){
-        PrSquare square = new PrSquare(1);
+        PrSquare square = new PrSquare();
         GraphicsContext gc = c.getGraphicsContext2D();
         square.show(gc);
-
-        arrRect[jR] = square.getCoordinateX();
-        ++jR;
-        arrRect[jR] = square.getCoordinateY();
-        ++jR;
-        arrRect[jR] = square.getSize();
-        ++jR;
+        arrSquare[jS] = square;
+        ++jS;
 
         ++iR;
         dialog.setText("Квадрат №" + iR + " создан!");
     }
 
     public void moveToRect(){
-        double x, y, s;
-        PrSquare square = new PrSquare();
+        PrSquare square;
         GraphicsContext gc = c.getGraphicsContext2D();
         String coordinateX = layoutMoveX.getText();
         String coordinateY = layoutMoveY.getText();
         double addX = Double.parseDouble(coordinateX);
         double addY = Double.parseDouble(coordinateY);
         deleteRect();
-        for (int k = 0; k < jR; k++) {
-            x = (arrRect[k] + addX);
-            arrRect[k] = x;
-            y = (arrRect[++k] + addY);
-            arrRect[k] = y;
-            s = arrRect[++k];
-            square.move(x, y, s, gc);
+        for (int k = 0; k < jS; k++) {
+            square = arrSquare[k];
+            square.move(addX, addY, gc);
         }
     }
 
     public void deleteRect(){
-        PrSquare square = new PrSquare();
-        for (int k = 0; k < jR; k++) {
-            square.setCoordinateX(arrRect[k] + -1);
-            square.setCoordinateY(arrRect[++k] + -1);
-            square.setSize(arrRect[++k] + 2);
-            GraphicsContext gc = c.getGraphicsContext2D();
+        PrSquare square;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        for (int k = 0; k < jS; k++) {
+            square = arrSquare[k];
             square.delete(gc);
         }
         // Если была нажата кнопка "Удалить" то очищаем массив
         if(dR == 1){
-            for (int k = 0; k < jR; k++) {
-                arrRect[k] = 0;
+            for (int k = 0; k < jS; k++) {
+                arrSquare[k] = null;
             }
+            jS = 0;
             dR = 0;
         }
     }
@@ -328,13 +296,6 @@ public class Controller {
                 double x = Double.parseDouble(coordinateX);
                 double y = Double.parseDouble(coordinateY);
                 double s = Double.parseDouble(size);
-                // Добавляем координаты и радиус в массив
-                arrLine[jL] = x;
-                ++jL;
-                arrLine[jL] = y;
-                ++jL;
-                arrLine[jL] = s;
-                ++jL;
 
                 createLine(x, y, s);
             } catch (Exception e) {
@@ -344,16 +305,10 @@ public class Controller {
     }
 
     public void createLineEmpty(){
-        PrLine line = new PrLine(1);
+        PrLine line = new PrLine();
         GraphicsContext gc = c.getGraphicsContext2D();
-        gc.save();
         line.show(gc);
-
-        arrLine[jL] = line.getCoordinateX();
-        ++jL;
-        arrLine[jL] = line.getCoordinateY();
-        ++jL;
-        arrLine[jL] = line.getSize();
+        arrLine[jL] = line;
         ++jL;
 
         ++iL;
@@ -364,41 +319,41 @@ public class Controller {
         PrLine line = new PrLine(x,y,s);
         GraphicsContext gc = c.getGraphicsContext2D();
         line.show(gc);
+        arrLine[jL] = line;
+        ++jL;
 
         ++iL;
         dialog.setText("Отрезок №" + iL + " создан!");
     }
 
     public void moveToLine(){
-        double x, y, s;
-        PrLine line = new PrLine();
+        PrLine line;
         GraphicsContext gc = c.getGraphicsContext2D();
         String coordinateX = layoutMoveX.getText();
         String coordinateY = layoutMoveY.getText();
         double addX = Double.parseDouble(coordinateX);
         double addY = Double.parseDouble(coordinateY);
         deleteLine();
-
-        line.move(arrLine, jL, addX, addY, gc);
-
+        for (int k = 0; k < jL; k++) {
+            line = arrLine[k];
+            line.move(addX, addY, gc);
         }
     }
 
     public void deleteLine(){
-        PrLine line = new PrLine();
+        PrLine line;
+        GraphicsContext gc = c.getGraphicsContext2D();
         for (int k = 0; k < jL; k++) {
-            line.setCoordinateX(arrLine[k] - 1);
-            line.setCoordinateY(arrLine[++k]);
-            line.setSize(arrLine[++k] + 3);
-            GraphicsContext gc = c.getGraphicsContext2D();
+            line = arrLine[k];
             line.delete(gc);
         }
         // Если была нажата кнопка "Удалить" то очищаем массив
         if(dL == 1){
             for (int k = 0; k < jL; k++) {
-                arrLine[k] = 0;
+                arrLine[k] = null;
             }
             dL = 0;
+            jL = 0;
         }
     }
 }
