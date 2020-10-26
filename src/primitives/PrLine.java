@@ -1,4 +1,4 @@
-package primitiveLine;
+package primitives;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -7,38 +7,37 @@ import java.util.Random;
 
 public class PrLine {
     // Поле класса
-    private double coordinateX;
-    private double coordinateY;
+    Point p = new Point();
     private double size ;
 
 
 
     public PrLine(double coordinateX, double coordinateY, double size) {
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
+        p.setCoordinateX(coordinateX);
+        p.setCoordinateY(coordinateY);
         this.size = size;
     }
 
     public PrLine() {
         Random random = new Random();
-        this.coordinateX = (random.nextDouble()*500.0);
-        this.coordinateY = (random.nextDouble()*500.0);
+        p.setCoordinateX(random.nextDouble()*500.0);
+        p.setCoordinateY(random.nextDouble()*500.0);
         this.size = (random.nextDouble()*100.0);
     }
 
     public void show(GraphicsContext gc){
         gc.setFill(Color.BLACK);
-        gc.fillRect(coordinateX, coordinateY, 2, size);
+        gc.fillRect(p.getCoordinateX(), p.getCoordinateY(), 2, size);
     }
 
     public void delete(GraphicsContext gc){
         gc.setFill(Color.grayRgb(244));
-        gc.fillRect(coordinateX - 1, coordinateY, 4, size + 3);
+        gc.fillRect(p.getCoordinateX() - 1, p.getCoordinateY(), 4, size + 3);
     }
 
     public void move(double addX, double addY, GraphicsContext gc){
-        this.coordinateX += addX;
-        this.coordinateY += addY;
+        p.setCoordinateX(addX);
+        p.setCoordinateY(addY);
         show(gc);
     }
 }

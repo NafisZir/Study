@@ -6,9 +6,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import primitiveCircle.PrCircle;
-import primitiveLine.PrLine;
-import primitiveSquare.PrSquare;
+import primitives.PrCircle;
+import primitives.PrLine;
+import primitives.PrRing;
+import primitives.PrSquare;
 
 public class Controller {
     @FXML
@@ -36,6 +37,9 @@ public class Controller {
     private TextField sizeField;
 
     @FXML
+    private TextField sizeField2;
+
+    @FXML
     private Label dialog;
 
     @FXML
@@ -52,63 +56,75 @@ public class Controller {
     private byte iR = 0;
     private PrSquare[] arrSquare = new PrSquare[20];
     private byte jS = 0;
-    private byte dR = 0;
+    private byte dS = 0;
 
     private byte iL = 0;
     private PrLine[] arrLine = new PrLine[20];
     private byte jL = 0;
     private byte dL = 0;
 
+    private PrRing[] arrRing = new PrRing[20];
+    private byte jR = 0;
+    private byte dR = 0;
+
     // Метод создает элементы в comboBoxCreate
 
     @FXML
     public void initialize() {
         comboBoxCreate.getItems().removeAll(comboBoxCreate.getItems());
-        comboBoxCreate.getItems().addAll("Круг", "Отрезок", "Квадрат");
+        comboBoxCreate.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо");
         comboBoxCreate.getSelectionModel().select("Выберите примитив");
         comboBoxDelete.getItems().removeAll(comboBoxDelete.getItems());
-        comboBoxDelete.getItems().addAll("Круг", "Отрезок", "Квадрат");
+        comboBoxDelete.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо");
         comboBoxMove.getItems().removeAll(comboBoxMove.getItems());
-        comboBoxMove.getItems().addAll("Круг", "Отрезок", "Квадрат");
+        comboBoxMove.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо");
     }
 
     // Метод обработки кнопки "Создать"
     @FXML
-    public void buttonCreate(){
-        if(comboBoxCreate.getValue().equals("Круг"))
+    public void buttonCreate() {
+        if (comboBoxCreate.getValue().equals("Круг"))
             mainCircleCreateFunction();
-        if(comboBoxCreate.getValue().equals("Квадрат"))
+        if (comboBoxCreate.getValue().equals("Квадрат"))
             mainSquareCreateFunction();
-        if(comboBoxCreate.getValue().equals("Отрезок"))
+        if (comboBoxCreate.getValue().equals("Отрезок"))
             mainLineCreateFunction();
+        if (comboBoxCreate.getValue().equals("Кольцо"))
+            mainRingCreateFunction();
     }
 
 
     // Метод обработки кнопки "Удалить"
-    public void buttonDelete(){
-        if(comboBoxDelete.getValue().equals("Круг")) {
+    public void buttonDelete() {
+        if (comboBoxDelete.getValue().equals("Круг")) {
             dC = 1;
             deleteCircle();
         }
-        if(comboBoxDelete.getValue().equals("Квадрат")) {
+        if (comboBoxDelete.getValue().equals("Квадрат")) {
             dR = 1;
             deleteRect();
         }
-        if(comboBoxDelete.getValue().equals("Отрезок")) {
+        if (comboBoxDelete.getValue().equals("Отрезок")) {
             dL = 1;
             deleteLine();
+        }
+        if (comboBoxDelete.getValue().equals("Кольцо")) {
+            dR = 1;
+            deleteRing();
         }
     }
 
 
     // Метод обработки кнопки "Переместить"
-    public void buttonMove(){
-        if(comboBoxMove.getValue().equals("Круг"))
+    public void buttonMove() {
+        if (comboBoxMove.getValue().equals("Круг"))
             moveToCircle();
-        if(comboBoxMove.getValue().equals("Квадрат"))
+        if (comboBoxMove.getValue().equals("Квадрат"))
             moveToRect();
-        if(comboBoxMove.getValue().equals("Отрезок"))
+        if (comboBoxMove.getValue().equals("Отрезок"))
             moveToLine();
+        if (comboBoxMove.getValue().equals("Кольцо"))
+            moveToRing();
     }
 
 
@@ -140,8 +156,8 @@ public class Controller {
     }
 
     // Создаем круг
-    public void createCircle(double x, double y, double r){
-        PrCircle circle = new PrCircle(x,y,r);
+    public void createCircle(double x, double y, double r) {
+        PrCircle circle = new PrCircle(x, y, r);
         // Объект для создания примитива на холсте
         GraphicsContext gc = c.getGraphicsContext2D();
         circle.show(gc);
@@ -152,7 +168,7 @@ public class Controller {
     }
 
     // Создаем круг с рандомными значениями
-    public void createCircleEmpty(){
+    public void createCircleEmpty() {
         PrCircle circle = new PrCircle();
         GraphicsContext gc = c.getGraphicsContext2D();
         circle.show(gc);
@@ -164,7 +180,7 @@ public class Controller {
     }
 
     // Функция по перемещению круга
-    public void moveToCircle(){
+    public void moveToCircle() {
         GraphicsContext gc = c.getGraphicsContext2D();
         String coordinateX = layoutMoveX.getText();
         String coordinateY = layoutMoveY.getText();
@@ -179,7 +195,7 @@ public class Controller {
     }
 
     // Метод удаляет круг
-    public void deleteCircle(){
+    public void deleteCircle() {
         PrCircle circle;
         GraphicsContext gc = c.getGraphicsContext2D();
         for (int k = 0; k < jC; k++) {
@@ -187,7 +203,7 @@ public class Controller {
             circle.delete(gc);
         }
         // Если была нажата кнопка "Удалить" то очищаем массив
-        if(dC == 1){
+        if (dC == 1) {
             for (int k = 0; k < jC; k++) {
                 arrCircle[k] = null;
             }
@@ -203,7 +219,7 @@ public class Controller {
     // ...
 
 
-    public void mainSquareCreateFunction(){
+    public void mainSquareCreateFunction() {
         String coordinateX = layoutCraeteX.getText();
         String coordinateY = layoutCraeteY.getText();
         String size = sizeField.getText();
@@ -224,8 +240,8 @@ public class Controller {
         }
     }
 
-    public void createRect(double x, double y, double s){
-        PrSquare square = new PrSquare(x,y,s);
+    public void createRect(double x, double y, double s) {
+        PrSquare square = new PrSquare(x, y, s);
         GraphicsContext gc = c.getGraphicsContext2D();
         square.show(gc);
         arrSquare[jS] = square;
@@ -235,7 +251,7 @@ public class Controller {
         dialog.setText("Квадрат №" + iR + " создан!");
     }
 
-    public void createRectEmpty(){
+    public void createRectEmpty() {
         PrSquare square = new PrSquare();
         GraphicsContext gc = c.getGraphicsContext2D();
         square.show(gc);
@@ -246,7 +262,7 @@ public class Controller {
         dialog.setText("Квадрат №" + iR + " создан!");
     }
 
-    public void moveToRect(){
+    public void moveToRect() {
         PrSquare square;
         GraphicsContext gc = c.getGraphicsContext2D();
         String coordinateX = layoutMoveX.getText();
@@ -260,7 +276,7 @@ public class Controller {
         }
     }
 
-    public void deleteRect(){
+    public void deleteRect() {
         PrSquare square;
         GraphicsContext gc = c.getGraphicsContext2D();
         for (int k = 0; k < jS; k++) {
@@ -268,12 +284,12 @@ public class Controller {
             square.delete(gc);
         }
         // Если была нажата кнопка "Удалить" то очищаем массив
-        if(dR == 1){
+        if (dS == 1) {
             for (int k = 0; k < jS; k++) {
                 arrSquare[k] = null;
             }
             jS = 0;
-            dR = 0;
+            dS = 0;
         }
     }
 
@@ -283,7 +299,7 @@ public class Controller {
     // по рабооте с линией
     //...
 
-    public void mainLineCreateFunction(){
+    public void mainLineCreateFunction() {
         String coordinateX = layoutCraeteX.getText();
         String coordinateY = layoutCraeteY.getText();
         String size = sizeField.getText();
@@ -304,7 +320,7 @@ public class Controller {
         }
     }
 
-    public void createLineEmpty(){
+    public void createLineEmpty() {
         PrLine line = new PrLine();
         GraphicsContext gc = c.getGraphicsContext2D();
         line.show(gc);
@@ -315,8 +331,8 @@ public class Controller {
         dialog.setText("Отрезок №" + iL + " создан!");
     }
 
-    public void createLine(double x, double y, double s){
-        PrLine line = new PrLine(x,y,s);
+    public void createLine(double x, double y, double s) {
+        PrLine line = new PrLine(x, y, s);
         GraphicsContext gc = c.getGraphicsContext2D();
         line.show(gc);
         arrLine[jL] = line;
@@ -326,7 +342,7 @@ public class Controller {
         dialog.setText("Отрезок №" + iL + " создан!");
     }
 
-    public void moveToLine(){
+    public void moveToLine() {
         PrLine line;
         GraphicsContext gc = c.getGraphicsContext2D();
         String coordinateX = layoutMoveX.getText();
@@ -340,7 +356,7 @@ public class Controller {
         }
     }
 
-    public void deleteLine(){
+    public void deleteLine() {
         PrLine line;
         GraphicsContext gc = c.getGraphicsContext2D();
         for (int k = 0; k < jL; k++) {
@@ -348,12 +364,95 @@ public class Controller {
             line.delete(gc);
         }
         // Если была нажата кнопка "Удалить" то очищаем массив
-        if(dL == 1){
+        if (dL == 1) {
             for (int k = 0; k < jL; k++) {
                 arrLine[k] = null;
             }
             dL = 0;
             jL = 0;
+        }
+    }
+
+
+// ...
+// Следующие методы только
+// по работе с кольцом
+// ...
+
+
+    public void mainRingCreateFunction() {
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size = sizeField.getText();
+        String size2 = sizeField2.getText();
+
+        // Если поля пустые, то значения получаются рандомными
+        if (coordinateX.equals("") && coordinateY.equals("") && size.equals(""))
+            createRingEmpty();
+        else {
+            try {
+                double x = Double.parseDouble(coordinateX);
+                double y = Double.parseDouble(coordinateY);
+                double s1 = Double.parseDouble(size);
+                double s2 = Double.parseDouble(size2);
+
+                createRing(x, y, s1, s2);
+            } catch (Exception e) {
+                dialog.setText("Некорректный ввод!");
+            }
+        }
+    }
+
+    public void createRingEmpty() {
+        PrRing ring = new PrRing();
+        GraphicsContext gc = c.getGraphicsContext2D();
+        ring.showR(gc);
+        arrRing[jR] = ring;
+        ++jR;
+
+        ++iR;
+        dialog.setText("Кольцо №" + iR + " создан!");
+    }
+
+    public void createRing(double x, double y, double s1, double s2) {
+        PrRing ring = new PrRing(s1, s2, x, y);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        ring.showR(gc);
+        arrRing[jR] = ring;
+        ++jR;
+
+        ++iR;
+        dialog.setText("Кольцо №" + iR + " создан!");
+    }
+
+    public void moveToRing() {
+        PrRing ring;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        String coordinateX = layoutMoveX.getText();
+        String coordinateY = layoutMoveY.getText();
+        double addX = Double.parseDouble(coordinateX);
+        double addY = Double.parseDouble(coordinateY);
+        deleteRing();
+        for (int k = 0; k < jR; k++) {
+            ring = arrRing[k];
+            ring.moveToR(addX, addY, gc);
+        }
+    }
+
+    public void deleteRing() {
+        PrRing ring;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        for (int k = 0; k < jR; k++) {
+            ring = arrRing[k];
+            ring.delete(gc);
+        }
+        // Если была нажата кнопка "Удалить" то очищаем массив
+        if (dR == 1) {
+            for (int k = 0; k < jR; k++) {
+                arrRing[k] = null;
+            }
+            dR = 0;
+            jR = 0;
         }
     }
 }

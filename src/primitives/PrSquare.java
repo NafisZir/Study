@@ -1,4 +1,4 @@
-package primitiveSquare;
+package primitives;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -7,37 +7,37 @@ import java.util.Random;
 
 public class PrSquare {
     // Поле класса
-    private double coordinateX;
-    private double coordinateY;
+    Point p = new Point();
     private double size;
 
-    Random random = new Random();
+
 
     public PrSquare(double coordinateX, double coordinateY, double size) {
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
+        p.setCoordinateX(coordinateX);
+        p.setCoordinateY(coordinateY);
         this.size = size;
     }
 
     public PrSquare() {
-        this.coordinateX = (random.nextDouble()*500.0);
-        this.coordinateY = (random.nextDouble()*500.0);
+        Random random = new Random();
+        p.setCoordinateX(random.nextDouble()*500.0);
+        p.setCoordinateY(random.nextDouble()*500.0);
         this.size = (random.nextDouble()*100.0);
     }
 
     public void show(GraphicsContext gc){
         gc.setFill(Color.RED);
-        gc.fillRect(coordinateX, coordinateY, size, size);
+        gc.fillRect(p.getCoordinateX(), p.getCoordinateY(), size, size);
     }
 
     public void delete(GraphicsContext gc){
         gc.setFill(Color.grayRgb(244));
-        gc.fillRect(coordinateX - 1, coordinateY - 1, size + 2, size + 2);
+        gc.fillRect(p.getCoordinateX() - 1, p.getCoordinateY() - 1, size + 2, size + 2);
     }
 
     public void move(double x, double y, GraphicsContext gc){
-        this.coordinateX += x;
-        this.coordinateY += y;
+        p.setCoordinateX(x);
+        p.setCoordinateY(y);
         show(gc);
     }
 }
