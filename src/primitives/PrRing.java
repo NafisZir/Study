@@ -31,6 +31,8 @@ public class PrRing {
         c2.setRadius(r2);
     }
 
+    public PrRing(int q){ }
+
     public void showR(GraphicsContext gc){
         c1.show(gc);
         c2.delete(gc);

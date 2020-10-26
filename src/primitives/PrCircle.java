@@ -10,8 +10,6 @@ public class PrCircle {
     Point p = new Point();
     private double radius;
 
-
-
     // Конструктор 1, если пользователь ввел значения
     public PrCircle(double coordinateX, double coordinateY, double radius) {
         p.setCoordinateX(coordinateX);

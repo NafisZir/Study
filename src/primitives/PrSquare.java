@@ -10,8 +10,6 @@ public class PrSquare {
     Point p = new Point();
     private double size;
 
-
-
     public PrSquare(double coordinateX, double coordinateY, double size) {
         p.setCoordinateX(coordinateX);
         p.setCoordinateY(coordinateY);
@@ -23,6 +21,12 @@ public class PrSquare {
         p.setCoordinateX(random.nextDouble()*500.0);
         p.setCoordinateY(random.nextDouble()*500.0);
         this.size = (random.nextDouble()*100.0);
+    }
+
+    public PrSquare(int q){ }
+
+    public void setSize(double size) {
+        this.size = size;
     }
 
     public void show(GraphicsContext gc){

@@ -6,10 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import primitives.PrCircle;
-import primitives.PrLine;
-import primitives.PrRing;
-import primitives.PrSquare;
+import primitives.*;
 
 public class Controller {
     @FXML
@@ -53,7 +50,7 @@ public class Controller {
     // Переменная для того, чтобы удалять содержимое массива arrCircle, после нажатия кнопки "Удалить"
     private byte dC = 0;
 
-    private byte iR = 0;
+    private byte iS = 0;
     private PrSquare[] arrSquare = new PrSquare[20];
     private byte jS = 0;
     private byte dS = 0;
@@ -63,21 +60,26 @@ public class Controller {
     private byte jL = 0;
     private byte dL = 0;
 
+    private byte iR = 0;
     private PrRing[] arrRing = new PrRing[20];
     private byte jR = 0;
     private byte dR = 0;
 
+    private byte iF = 0;
+    private Flower[] arrFlower = new Flower[10];
+    private byte jF = 0;
+    private byte dF = 0;
     // Метод создает элементы в comboBoxCreate
 
     @FXML
     public void initialize() {
         comboBoxCreate.getItems().removeAll(comboBoxCreate.getItems());
-        comboBoxCreate.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо");
+        comboBoxCreate.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо", "Цветок");
         comboBoxCreate.getSelectionModel().select("Выберите примитив");
         comboBoxDelete.getItems().removeAll(comboBoxDelete.getItems());
-        comboBoxDelete.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо");
+        comboBoxDelete.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо", "Цветок");
         comboBoxMove.getItems().removeAll(comboBoxMove.getItems());
-        comboBoxMove.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо");
+        comboBoxMove.getItems().addAll("Круг", "Отрезок", "Квадрат", "Кольцо", "Цветок");
     }
 
     // Метод обработки кнопки "Создать"
@@ -91,6 +93,8 @@ public class Controller {
             mainLineCreateFunction();
         if (comboBoxCreate.getValue().equals("Кольцо"))
             mainRingCreateFunction();
+        if (comboBoxCreate.getValue().equals("Цветок"))
+            mainFlowerCreateFunction();
     }
 
 
@@ -101,7 +105,7 @@ public class Controller {
             deleteCircle();
         }
         if (comboBoxDelete.getValue().equals("Квадрат")) {
-            dR = 1;
+            dS = 1;
             deleteRect();
         }
         if (comboBoxDelete.getValue().equals("Отрезок")) {
@@ -111,6 +115,10 @@ public class Controller {
         if (comboBoxDelete.getValue().equals("Кольцо")) {
             dR = 1;
             deleteRing();
+        }
+        if (comboBoxDelete.getValue().equals("Цветок")) {
+            dF = 1;
+            deleteFlower();
         }
     }
 
@@ -125,6 +133,8 @@ public class Controller {
             moveToLine();
         if (comboBoxMove.getValue().equals("Кольцо"))
             moveToRing();
+        if (comboBoxMove.getValue().equals("Цветок"))
+            moveToFlower();
     }
 
 
@@ -247,8 +257,8 @@ public class Controller {
         arrSquare[jS] = square;
         ++jS;
 
-        ++iR;
-        dialog.setText("Квадрат №" + iR + " создан!");
+        ++iS;
+        dialog.setText("Квадрат №" + iS + " создан!");
     }
 
     public void createRectEmpty() {
@@ -258,8 +268,8 @@ public class Controller {
         arrSquare[jS] = square;
         ++jS;
 
-        ++iR;
-        dialog.setText("Квадрат №" + iR + " создан!");
+        ++iS;
+        dialog.setText("Квадрат №" + iS + " создан!");
     }
 
     public void moveToRect() {
@@ -453,6 +463,87 @@ public class Controller {
             }
             dR = 0;
             jR = 0;
+        }
+    }
+
+
+// ...
+// Следующие методы только
+// по работе с цветком
+// ...
+
+
+    public void mainFlowerCreateFunction() {
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size = sizeField.getText();
+
+        // Если поля пустые, то значения получаются рандомными
+        if (coordinateX.equals("") && coordinateY.equals("") && size.equals(""))
+            createFlowerEmpty();
+        else {
+            try {
+                double x = Double.parseDouble(coordinateX);
+                double y = Double.parseDouble(coordinateY);
+                double s1 = Double.parseDouble(size);
+
+                createFlower(x, y, s1);
+            } catch (Exception e) {
+                dialog.setText("Некорректный ввод!");
+            }
+        }
+    }
+
+    public void createFlowerEmpty() {
+        Flower flower = new Flower();
+        GraphicsContext gc = c.getGraphicsContext2D();
+        flower.show(gc);
+        arrFlower[jF] = flower;
+        ++jF;
+
+        ++iF;
+        dialog.setText("Цветок №" + iF + " создан!");
+    }
+
+    public void createFlower(double x, double y, double s) {
+        Flower flower = new Flower(x, y, s);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        flower.show(gc);
+        arrFlower[jF] = flower;
+        ++jF;
+
+        ++iF;
+        dialog.setText("Цветок №" + iF + " создан!");
+    }
+
+    public void moveToFlower() {
+        Flower flower;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        String coordinateX = layoutMoveX.getText();
+        String coordinateY = layoutMoveY.getText();
+        double addX = Double.parseDouble(coordinateX);
+        double addY = Double.parseDouble(coordinateY);
+        deleteFlower();
+        for (int k = 0; k < jF; k++) {
+            flower = arrFlower[k];
+            flower.move(addX, addY, gc);
+        }
+    }
+
+    public void deleteFlower() {
+        Flower flower;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        for (int k = 0; k < jF; k++) {
+            flower = arrFlower[k];
+            flower.delete(gc);
+        }
+        // Если была нажата кнопка "Удалить" то очищаем массив
+        if (dF == 1) {
+            for (int k = 0; k < jF; k++) {
+                arrFlower[k] = null;
+            }
+            dF = 0;
+            jF = 0;
         }
     }
 }

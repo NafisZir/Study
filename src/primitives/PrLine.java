@@ -10,8 +10,6 @@ public class PrLine {
     Point p = new Point();
     private double size ;
 
-
-
     public PrLine(double coordinateX, double coordinateY, double size) {
         p.setCoordinateX(coordinateX);
         p.setCoordinateY(coordinateY);
@@ -25,19 +23,41 @@ public class PrLine {
         this.size = (random.nextDouble()*100.0);
     }
 
+    public PrLine(int q){ }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
+
     public void show(GraphicsContext gc){
         gc.setFill(Color.BLACK);
         gc.fillRect(p.getCoordinateX(), p.getCoordinateY(), 2, size);
     }
 
+    public void show2(GraphicsContext gc){
+        gc.setFill(Color.BLACK);
+        gc.fillRect(p.getCoordinateX(), p.getCoordinateY(), size, 2);
+    }
+
     public void delete(GraphicsContext gc){
         gc.setFill(Color.grayRgb(244));
-        gc.fillRect(p.getCoordinateX() - 1, p.getCoordinateY(), 4, size + 3);
+        gc.fillRect(p.getCoordinateX() - 1, p.getCoordinateY(), size + 3, 4);
+    }
+
+    public void delete2(GraphicsContext gc){
+        gc.setFill(Color.grayRgb(244));
+        gc.fillRect(p.getCoordinateX() - 1, p.getCoordinateY(), size + 3, 4);
     }
 
     public void move(double addX, double addY, GraphicsContext gc){
         p.setCoordinateX(addX);
         p.setCoordinateY(addY);
         show(gc);
+    }
+
+    public void move2(double addX, double addY, GraphicsContext gc){
+        p.setCoordinateX(addX);
+        p.setCoordinateY(addY);
+        show2(gc);
     }
 }
