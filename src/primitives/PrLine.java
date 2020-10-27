@@ -41,7 +41,7 @@ public class PrLine {
 
     public void delete(GraphicsContext gc){
         gc.setFill(Color.grayRgb(244));
-        gc.fillRect(p.getCoordinateX() - 1, p.getCoordinateY(), size + 3, 4);
+        gc.fillRect(p.getCoordinateX() - 1, p.getCoordinateY(), 4, size + 3);
     }
 
     public void delete2(GraphicsContext gc){

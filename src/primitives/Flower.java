@@ -16,6 +16,19 @@ public class Flower {
     PrLine lineLeft = new PrLine(1);
 
     public Flower(double x, double y, double s){
+        setCoordinate(x, y, s);
+    }
+
+    public Flower(){
+        Random random = new Random();
+        double x, y, s;
+        x = (300 + random.nextDouble()*500.0);
+        y = (300 + random.nextDouble()*500.0);
+        s = (random.nextDouble()*40.0);
+        setCoordinate(x, y, s);
+    }
+
+    public void setCoordinate(double x, double y, double s){
         square.p.setCoordinateX(x);
         square.p.setCoordinateY(y);
         square.setSize(s);
@@ -50,26 +63,19 @@ public class Flower {
         ringDown.c1.setRadius(s/2);
         ringDown.c2.setRadius(s/5);
 
-        ringRight.c1.p.setCoordinateX(y - s);
-        ringRight.c2.p.setCoordinateX(y - s);
+        ringRight.c1.p.setCoordinateX(x + 2*s);
+        ringRight.c2.p.setCoordinateX(x + 2*s);
         ringRight.c1.p.setCoordinateY(y + s/2);
         ringRight.c2.p.setCoordinateY(y + s/2);
         ringRight.c1.setRadius(s/2);
         ringRight.c2.setRadius(s/5);
 
-        ringLeft.c1.p.setCoordinateX(y + s*2);
-        ringLeft.c2.p.setCoordinateX(y + s*2);
+        ringLeft.c1.p.setCoordinateX(x - s);
+        ringLeft.c2.p.setCoordinateX(x - s);
         ringLeft.c1.p.setCoordinateY(y + s/2);
         ringLeft.c2.p.setCoordinateY(y + s/2);
         ringLeft.c1.setRadius(s/2);
         ringLeft.c2.setRadius(s/5);
-    }
-
-    public Flower(){
-        Random random = new Random();
-        square.p.setCoordinateX(300 + random.nextDouble()*500.0);
-        square.p.setCoordinateY(300 + random.nextDouble()*500.0);
-        square.setSize(random.nextDouble()*40.0);
     }
 
     public void show(GraphicsContext gc){
@@ -103,12 +109,10 @@ public class Flower {
 
         lineUp.move(x, y, gc);
         lineDown.move(x, y, gc);
-        lineRight.delete2(gc);
-        lineLeft.delete2(gc);
         lineRight.move2(x, y, gc);
         lineLeft.move2(x, y, gc);
-        ringUp.moveToR(x, y, gc);
 
+        ringUp.moveToR(x, y, gc);
         ringDown.moveToR(x, y, gc);
         ringRight.moveToR(x, y, gc);
         ringLeft.moveToR(x, y, gc);
