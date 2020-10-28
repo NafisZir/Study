@@ -23,9 +23,9 @@ public class PrRing {
         this.c2 = new PrCircle(x, y, r2);
     }
 
-    public PrRing(Point p, double r1, double r2){
-        this.c1 = new PrCircle(p, r1);
-        this.c2 = new PrCircle(p, r2);
+    public PrRing(Point p1, Point p2,double r1, double r2){
+        this.c1 = new PrCircle(p1, r1);
+        this.c2 = new PrCircle(p2, r2);
     }
 
     public void showR(GraphicsContext gc){
@@ -34,11 +34,10 @@ public class PrRing {
     }
 
     public void delete(GraphicsContext  gc){
-
+        c1.delete(gc);
     }
 
     public void moveToR(double x, double y, GraphicsContext gc){
-        c1.delete(gc);
         c1.move(x, y, gc);
         c2.move(x, y, gc);
         c2.delete(gc);

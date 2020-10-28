@@ -97,6 +97,7 @@ public class Controller {
             createFlower();
     }
 
+    // Метод обработки кнопки "Создать р."
     public void buttonCreateRandom(){
         if (comboBoxCreate.getValue().equals("Круг"))
             createCircleRandom();
@@ -110,6 +111,7 @@ public class Controller {
             createFlowerRandom();
     }
 
+    // Метод обработки кнопки "Создать т."
     public void buttonCreatePoint(){
         if (comboBoxCreate.getValue().equals("Круг"))
             createCirclePoint();
@@ -467,13 +469,13 @@ public class Controller {
         double y = Double.parseDouble(coordinateY);
         double r1 = Double.parseDouble(size);
         double r2 = Double.parseDouble(size2);
+
+        Point p1 = new Point(x, y);
+        Point p2 = new Point(x, y);
+        PrRing ring = new PrRing(p1, p2, r1, r2);
         GraphicsContext gc = c.getGraphicsContext2D();
 
-        Point p = new Point(x, y);
-        PrRing ring = new PrRing(p, r1, r2);
-
         ring.showR(gc);
-
         arrRing[jR] = ring;
         ++jR;
     }
@@ -555,6 +557,8 @@ public class Controller {
 
         Point p = new Point(x, y);
         Flower flower = new Flower(p, s);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        flower.show(gc);
 
         arrFlower[jF] = flower;
         ++jF;

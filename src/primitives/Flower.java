@@ -34,8 +34,8 @@ public class Flower {
 
         this.lineUp = new PrLine(p.getCoordinateX() + s/2, p.getCoordinateY() + s, s);
         this.lineDown = new PrLine(p.getCoordinateX() + s/2, p.getCoordinateY() - s, s);
-        this.lineRight = new PrLine(p.getCoordinateY() + s/2, p.getCoordinateX() + s, s);
-        this.lineLeft = new PrLine(p.getCoordinateY() + s/2, p.getCoordinateX() - s, s);
+        this.lineRight = new PrLine(p.getCoordinateX() + s, p.getCoordinateY() + s/2, s);
+        this.lineLeft = new PrLine(p.getCoordinateX() - s, p.getCoordinateY() + s/2, s);
 
         this.ringUp = new PrRing(s/2, s/5, p.getCoordinateX() + s/2, p.getCoordinateY() - s);
         this.ringDown = new PrRing(s/2, s/5, p.getCoordinateX() + s/2, p.getCoordinateY() + 2*s);

@@ -31,10 +31,6 @@ public class PrCircle {
         this.radius = s;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
     // метод создает круг на холсте
     public void show(GraphicsContext gc){
         gc.setFill(Color.GREEN);
