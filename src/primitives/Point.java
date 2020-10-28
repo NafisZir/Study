@@ -6,6 +6,11 @@ public class Point {
 
     public Point(){ }
 
+    public Point(double x, double y){
+        this.coordinateX = x;
+        this.coordinateY = y;
+    }
+
     public double getCoordinateX() {
         return coordinateX;
     }

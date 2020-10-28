@@ -63,6 +63,8 @@
             <TextField fx:id="sizeField" layoutX="88.0" layoutY="156.0" prefHeight="26.0" prefWidth="54.0" />
             <TextField fx:id="sizeField2" layoutX="234.0" layoutY="157.0" prefHeight="22.0" prefWidth="54.0" />
             <Label layoutX="150.0" layoutY="151.0" prefHeight="37.0" prefWidth="75.0" text=" Радиус мал." textAlignment="CENTER" />
+            <Button fx:id="buttonCreatePoint" layoutX="202.0" layoutY="79.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Создать т." onAction="#buttonCreatePoint"/>
+            <Button fx:id="buttonCreateRandom" layoutX="202.0" layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Создать р." onAction="#buttonCreateRandom"/>
          </children></AnchorPane>
       <Canvas fx:id="c" height="859.0" layoutX="298.0" width="1968.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label layoutX="14.0" layoutY="14.0" text="Создать" textFill="#c72a2a">
@@ -70,7 +72,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="buttonCreate" layoutX="200.0" layoutY="44.0" mnemonicParsing="false" onAction="#buttonCreate" prefHeight="26.0" prefWidth="60.0" text="Создать" />
+      <Button fx:id="buttonCreate" layoutX="200.0" layoutY="44.0" mnemonicParsing="false" onAction="#buttonCreate" prefHeight="26.0" prefWidth="82.0" text="Создать" />
       <ComboBox fx:id="comboBoxCreate" layoutX="14.0" layoutY="44.0" prefHeight="26.0" prefWidth="163.0" promptText="Выберите примитив" />
    </children>
 </AnchorPane>

@@ -86,17 +86,42 @@ public class Controller {
     @FXML
     public void buttonCreate() {
         if (comboBoxCreate.getValue().equals("Круг"))
-            mainCircleCreateFunction();
+            createCircle();
         if (comboBoxCreate.getValue().equals("Квадрат"))
-            mainSquareCreateFunction();
+            createRect();
         if (comboBoxCreate.getValue().equals("Отрезок"))
-            mainLineCreateFunction();
+            createLine();
         if (comboBoxCreate.getValue().equals("Кольцо"))
-            mainRingCreateFunction();
+            createRing();
         if (comboBoxCreate.getValue().equals("Цветок"))
-            mainFlowerCreateFunction();
+            createFlower();
     }
 
+    public void buttonCreateRandom(){
+        if (comboBoxCreate.getValue().equals("Круг"))
+            createCircleRandom();
+        if (comboBoxCreate.getValue().equals("Квадрат"))
+            createRectRandom();
+        if (comboBoxCreate.getValue().equals("Отрезок"))
+            createLineRandom();
+        if (comboBoxCreate.getValue().equals("Кольцо"))
+            createRingRandom();
+        if (comboBoxCreate.getValue().equals("Цветок"))
+            createFlowerRandom();
+    }
+
+    public void buttonCreatePoint(){
+        if (comboBoxCreate.getValue().equals("Круг"))
+            createCirclePoint();
+        if (comboBoxCreate.getValue().equals("Квадрат"))
+            createRectPoint();
+        if (comboBoxCreate.getValue().equals("Отрезок"))
+            createLinePoint();
+        if (comboBoxCreate.getValue().equals("Кольцо"))
+            createRingPoint();
+        if (comboBoxCreate.getValue().equals("Цветок"))
+            createFlowerPoint();
+    }
 
     // Метод обработки кнопки "Удалить"
     public void buttonDelete() {
@@ -143,30 +168,16 @@ public class Controller {
     // по работе с кругом
     // ...
 
-    // Здесь вся работа по созданию круга
-    public void mainCircleCreateFunction() {
+
+    // Создаем круг
+    public void createCircle() {
         String coordinateX = layoutCraeteX.getText();
         String coordinateY = layoutCraeteY.getText();
         String radius = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double r = Double.parseDouble(radius);
 
-        // Если поля пустые, то значения получаются рандомными
-        if (coordinateX.equals("") && coordinateY.equals("") && radius.equals(""))
-            createCircleEmpty();
-        else {
-            try {
-                double x = Double.parseDouble(coordinateX);
-                double y = Double.parseDouble(coordinateY);
-                double r = Double.parseDouble(radius);
-
-                createCircle(x, y, r);
-            } catch (Exception e) {
-                dialog.setText("Некорректный ввод!");
-            }
-        }
-    }
-
-    // Создаем круг
-    public void createCircle(double x, double y, double r) {
         PrCircle circle = new PrCircle(x, y, r);
         // Объект для создания примитива на холсте
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -178,7 +189,7 @@ public class Controller {
     }
 
     // Создаем круг с рандомными значениями
-    public void createCircleEmpty() {
+    public void createCircleRandom() {
         PrCircle circle = new PrCircle();
         GraphicsContext gc = c.getGraphicsContext2D();
         circle.show(gc);
@@ -189,6 +200,17 @@ public class Controller {
         dialog.setText("Круг №" + iC + " создан!");
     }
 
+    public void createCirclePoint(){
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String radius = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double r = Double.parseDouble(radius);
+
+        Point p = new Point(x, y);
+
+    }
     // Функция по перемещению круга
     public void moveToCircle() {
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -229,28 +251,14 @@ public class Controller {
     // ...
 
 
-    public void mainSquareCreateFunction() {
+    public void createRect() {
         String coordinateX = layoutCraeteX.getText();
         String coordinateY = layoutCraeteY.getText();
         String size = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double s = Double.parseDouble(size);
 
-        // Если поля пустые, то значения получаются рандомными
-        if (coordinateX.equals("") && coordinateY.equals("") && size.equals(""))
-            createRectEmpty();
-        else {
-            try {
-                double x = Double.parseDouble(coordinateX);
-                double y = Double.parseDouble(coordinateY);
-                double s = Double.parseDouble(size);
-
-                createRect(x, y, s);
-            } catch (Exception e) {
-                dialog.setText("Некорректный ввод!");
-            }
-        }
-    }
-
-    public void createRect(double x, double y, double s) {
         PrSquare square = new PrSquare(x, y, s);
         GraphicsContext gc = c.getGraphicsContext2D();
         square.show(gc);
@@ -261,7 +269,7 @@ public class Controller {
         dialog.setText("Квадрат №" + iS + " создан!");
     }
 
-    public void createRectEmpty() {
+    public void createRectRandom() {
         PrSquare square = new PrSquare();
         GraphicsContext gc = c.getGraphicsContext2D();
         square.show(gc);
@@ -270,6 +278,17 @@ public class Controller {
 
         ++iS;
         dialog.setText("Квадрат №" + iS + " создан!");
+    }
+
+    public void createRectPoint(){
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String radius = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double r = Double.parseDouble(radius);
+
+        Point p = new Point(x, y);
     }
 
     public void moveToRect() {
@@ -309,28 +328,8 @@ public class Controller {
     // по рабооте с линией
     //...
 
-    public void mainLineCreateFunction() {
-        String coordinateX = layoutCraeteX.getText();
-        String coordinateY = layoutCraeteY.getText();
-        String size = sizeField.getText();
 
-        // Если поля пустые, то значения получаются рандомными
-        if (coordinateX.equals("") && coordinateY.equals("") && size.equals(""))
-            createLineEmpty();
-        else {
-            try {
-                double x = Double.parseDouble(coordinateX);
-                double y = Double.parseDouble(coordinateY);
-                double s = Double.parseDouble(size);
-
-                createLine(x, y, s);
-            } catch (Exception e) {
-                dialog.setText("Некорректный ввод!");
-            }
-        }
-    }
-
-    public void createLineEmpty() {
+    public void createLineRandom() {
         PrLine line = new PrLine();
         GraphicsContext gc = c.getGraphicsContext2D();
         line.show(gc);
@@ -341,7 +340,14 @@ public class Controller {
         dialog.setText("Отрезок №" + iL + " создан!");
     }
 
-    public void createLine(double x, double y, double s) {
+    public void createLine() {
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double s = Double.parseDouble(size);
+
         PrLine line = new PrLine(x, y, s);
         GraphicsContext gc = c.getGraphicsContext2D();
         line.show(gc);
@@ -350,6 +356,17 @@ public class Controller {
 
         ++iL;
         dialog.setText("Отрезок №" + iL + " создан!");
+    }
+
+    public void createLinePoint(){
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String radius = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double r = Double.parseDouble(radius);
+
+        Point p = new Point(x, y);
     }
 
     public void moveToLine() {
@@ -390,30 +407,7 @@ public class Controller {
 // ...
 
 
-    public void mainRingCreateFunction() {
-        String coordinateX = layoutCraeteX.getText();
-        String coordinateY = layoutCraeteY.getText();
-        String size = sizeField.getText();
-        String size2 = sizeField2.getText();
-
-        // Если поля пустые, то значения получаются рандомными
-        if (coordinateX.equals("") && coordinateY.equals("") && size.equals(""))
-            createRingEmpty();
-        else {
-            try {
-                double x = Double.parseDouble(coordinateX);
-                double y = Double.parseDouble(coordinateY);
-                double s1 = Double.parseDouble(size);
-                double s2 = Double.parseDouble(size2);
-
-                createRing(x, y, s1, s2);
-            } catch (Exception e) {
-                dialog.setText("Некорректный ввод!");
-            }
-        }
-    }
-
-    public void createRingEmpty() {
+    public void createRingRandom() {
         PrRing ring = new PrRing();
         GraphicsContext gc = c.getGraphicsContext2D();
         ring.showR(gc);
@@ -424,7 +418,16 @@ public class Controller {
         dialog.setText("Кольцо №" + iR + " создан!");
     }
 
-    public void createRing(double x, double y, double s1, double s2) {
+    public void createRing() {
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size = sizeField.getText();
+        String size2 = sizeField2.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double s1 = Double.parseDouble(size);
+        double s2 = Double.parseDouble(size2);
+
         PrRing ring = new PrRing(s1, s2, x, y);
         GraphicsContext gc = c.getGraphicsContext2D();
         ring.showR(gc);
@@ -433,6 +436,17 @@ public class Controller {
 
         ++iR;
         dialog.setText("Кольцо №" + iR + " создан!");
+    }
+
+    public void createRingPoint(){
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String radius = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double r = Double.parseDouble(radius);
+
+        Point p = new Point(x, y);
     }
 
     public void moveToRing() {
@@ -473,28 +487,7 @@ public class Controller {
 // ...
 
 
-    public void mainFlowerCreateFunction() {
-        String coordinateX = layoutCraeteX.getText();
-        String coordinateY = layoutCraeteY.getText();
-        String size = sizeField.getText();
-
-        // Если поля пустые, то значения получаются рандомными
-        if (coordinateX.equals("") && coordinateY.equals("") && size.equals(""))
-            createFlowerEmpty();
-        else {
-            try {
-                double x = Double.parseDouble(coordinateX);
-                double y = Double.parseDouble(coordinateY);
-                double s1 = Double.parseDouble(size);
-
-                createFlower(x, y, s1);
-            } catch (Exception e) {
-                dialog.setText("Некорректный ввод!");
-            }
-        }
-    }
-
-    public void createFlowerEmpty() {
+    public void createFlowerRandom() {
         Flower flower = new Flower();
         GraphicsContext gc = c.getGraphicsContext2D();
         flower.show(gc);
@@ -505,7 +498,14 @@ public class Controller {
         dialog.setText("Цветок №" + iF + " создан!");
     }
 
-    public void createFlower(double x, double y, double s) {
+    public void createFlower() {
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double s = Double.parseDouble(size);
+
         Flower flower = new Flower(x, y, s);
         GraphicsContext gc = c.getGraphicsContext2D();
         flower.show(gc);
@@ -514,6 +514,17 @@ public class Controller {
 
         ++iF;
         dialog.setText("Цветок №" + iF + " создан!");
+    }
+
+    public void createFlowerPoint(){
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String radius = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double r = Double.parseDouble(radius);
+
+        Point p = new Point(x, y);
     }
 
     public void moveToFlower() {
