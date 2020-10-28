@@ -1,14 +1,12 @@
-package primitiveSquare;
+package primitives;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-public class PrSquare {
+public class PrSquare extends TFigure{
     // Поле класса
-    private double coordinateX;
-    private double coordinateY;
     private double size;
 
     Random random = new Random();

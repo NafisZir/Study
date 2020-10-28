@@ -1,14 +1,12 @@
-package primitiveLine;
+package primitives;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-public class PrLine {
+public class PrLine extends TFigure {
     // Поле класса
-    private double coordinateX;
-    private double coordinateY;
     private double size ;
 
 
@@ -26,6 +24,7 @@ public class PrLine {
         this.size = (random.nextDouble()*100.0);
     }
 
+    @Override
     public void show(GraphicsContext gc){
         gc.setFill(Color.BLACK);
         gc.fillRect(coordinateX, coordinateY, 2, size);
@@ -36,6 +35,7 @@ public class PrLine {
         gc.fillRect(coordinateX - 1, coordinateY, 4, size + 3);
     }
 
+    @Override
     public void move(double addX, double addY, GraphicsContext gc){
         this.coordinateX += addX;
         this.coordinateY += addY;

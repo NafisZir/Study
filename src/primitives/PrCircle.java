@@ -1,15 +1,13 @@
-package primitiveCircle;
+package primitives;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-public class PrCircle {
+public class PrCircle extends TFigure{
     // Поле класса
-    private double coordinateX;
-    private double coordinateY;
-    private double radius;
+    protected double radius;
 
 
 
@@ -29,6 +27,7 @@ public class PrCircle {
     }
 
     // метод создает круг на холсте
+    @Override
     public void show(GraphicsContext gc){
         gc.setFill(Color.GREEN);
         gc.fillOval(this.coordinateX- this.radius, this.coordinateY - this.radius, this.radius*2, this.radius*2);
@@ -40,6 +39,7 @@ public class PrCircle {
     }
 
     // Метод перемещает круг
+    @Override
     public void move(double x, double y, GraphicsContext gc){
         this.coordinateX += x;
         this.coordinateY += y;

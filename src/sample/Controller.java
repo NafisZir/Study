@@ -6,9 +6,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import primitiveCircle.PrCircle;
-import primitiveLine.PrLine;
-import primitiveSquare.PrSquare;
+import primitives.PrCircle;
+import primitives.PrLine;
+import primitives.PrSquare;
 
 public class Controller {
     @FXML
