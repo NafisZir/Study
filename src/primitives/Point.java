@@ -4,8 +4,6 @@ public class Point {
     private double coordinateX = 0;
     private double coordinateY = 0;
 
-    public Point(){ }
-
     public Point(double x, double y){
         this.coordinateX = x;
         this.coordinateY = y;

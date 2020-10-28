@@ -28,8 +28,6 @@ public class PrSquare {
         this.size = (random.nextDouble()*100.0);
     }
 
-    public PrSquare(int q){ }
-
     public void setSize(double size) {
         this.size = size;
     }

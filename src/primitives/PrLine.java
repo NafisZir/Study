@@ -29,8 +29,6 @@ public class PrLine {
         this.size = s;
     }
 
-    public PrLine(int q){ }
-
     public void setSize(double size) {
         this.size = size;
     }

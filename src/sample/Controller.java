@@ -117,8 +117,8 @@ public class Controller {
             createRectPoint();
         if (comboBoxCreate.getValue().equals("Отрезок"))
             createLinePoint();
-//        if (comboBoxCreate.getValue().equals("Кольцо"))
-//            createRingPoint();
+        if (comboBoxCreate.getValue().equals("Кольцо"))
+            createRingPoint();
         if (comboBoxCreate.getValue().equals("Цветок"))
             createFlowerPoint();
     }
@@ -458,25 +458,25 @@ public class Controller {
         dialog.setText("Кольцо №" + iR + " создан!");
     }
 
-//    public void createRingPoint(){
-//        String coordinateX = layoutCraeteX.getText();
-//        String coordinateY = layoutCraeteY.getText();
-//        String size = sizeField.getText();
-//        String size2 = sizeField2.getText();
-//        double x = Double.parseDouble(coordinateX);
-//        double y = Double.parseDouble(coordinateY);
-//        double s1 = Double.parseDouble(size);
-//        double s2 = Double.parseDouble(size2);
-//        GraphicsContext gc = c.getGraphicsContext2D();
-//
-//        Point p = new Point(x, y);
-//        PrRing ring = new PrRing(p, r);
-//
-//        ring.show(gc);
-//
-//        arrSquare[jS] = square;
-//        ++jS;
-//    }
+    public void createRingPoint(){
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size = sizeField.getText();
+        String size2 = sizeField2.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double r1 = Double.parseDouble(size);
+        double r2 = Double.parseDouble(size2);
+        GraphicsContext gc = c.getGraphicsContext2D();
+
+        Point p = new Point(x, y);
+        PrRing ring = new PrRing(p, r1, r2);
+
+        ring.showR(gc);
+
+        arrRing[jR] = ring;
+        ++jR;
+    }
 
     public void moveToRing() {
         PrRing ring;
@@ -551,9 +551,13 @@ public class Controller {
         String radius = sizeField.getText();
         double x = Double.parseDouble(coordinateX);
         double y = Double.parseDouble(coordinateY);
-        double r = Double.parseDouble(radius);
+        double s = Double.parseDouble(radius);
 
         Point p = new Point(x, y);
+        Flower flower = new Flower(p, s);
+
+        arrFlower[jF] = flower;
+        ++jF;
     }
 
     public void moveToFlower() {

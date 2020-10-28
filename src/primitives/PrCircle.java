@@ -16,9 +16,7 @@ public class PrCircle {
         this.radius = radius;
     }
 
-    public PrCircle(int q){}
-
-    // Конструктор 2, если пользователь оставил ВСЕ поля пустыми
+    // Конструктор 2
     public PrCircle() {
         Random random = new Random();
         double x, y;
