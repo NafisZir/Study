@@ -29,8 +29,10 @@ public class Flower {
     }
 
     public void setCoordinate(double x, double y, double s){
-        PrSquare sq = new PrSquare(x,y,s);
-        square = sq;
+        square.p.setCoordinateX(x);
+        square.p.setCoordinateY(y);
+        square.setSize(s);
+
         lineUp.p.setCoordinateX(x + s/2);
         lineUp.p.setCoordinateY(y + s);
         lineUp.setSize(s);

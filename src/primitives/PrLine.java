@@ -7,20 +7,26 @@ import java.util.Random;
 
 public class PrLine {
     // Поле класса
-    Point p = new Point();
+    Point p;
     private double size ;
 
-    public PrLine(double coordinateX, double coordinateY, double size) {
-        p.setCoordinateX(coordinateX);
-        p.setCoordinateY(coordinateY);
+    public PrLine(double x, double y, double size) {
+        this.p = new Point(x, y);
         this.size = size;
     }
 
     public PrLine() {
         Random random = new Random();
-        p.setCoordinateX(random.nextDouble()*500.0);
-        p.setCoordinateY(random.nextDouble()*500.0);
+        double x, y;
+        x = (random.nextDouble()*500.0);
+        y = (random.nextDouble()*500.0);
+        this.p = new Point(x, y);
         this.size = (random.nextDouble()*100.0);
+    }
+
+    public PrLine( Point p, double s){
+        this.p = p;
+        this.size = s;
     }
 
     public PrLine(int q){ }

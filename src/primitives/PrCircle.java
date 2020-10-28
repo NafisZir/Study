@@ -7,13 +7,12 @@ import java.util.Random;
 
 public class PrCircle {
     // Поле класса
-    Point p = new Point();
+    Point p;
     private double radius;
 
     // Конструктор 1, если пользователь ввел значения
-    public PrCircle(double coordinateX, double coordinateY, double radius) {
-        p.setCoordinateX(coordinateX);
-        p.setCoordinateY(coordinateY);
+    public PrCircle(double x, double y, double radius) {
+        this.p = new Point(x, y);
         this.radius = radius;
     }
 
@@ -22,9 +21,16 @@ public class PrCircle {
     // Конструктор 2, если пользователь оставил ВСЕ поля пустыми
     public PrCircle() {
         Random random = new Random();
-        p.setCoordinateX(random.nextDouble()*1000.0);
-        p.setCoordinateY(random.nextDouble()*500.0);
+        double x, y;
+        x = (random.nextDouble()*1000.0);
+        y = (random.nextDouble()*500.0);
+        this.p = new Point(x, y);
         this.radius = (random.nextDouble()*50.0);
+    }
+
+    public PrCircle( Point p, double s){
+        this.p = p;
+        this.radius = s;
     }
 
     public void setRadius(double radius) {

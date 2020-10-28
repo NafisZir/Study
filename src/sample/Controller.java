@@ -117,8 +117,8 @@ public class Controller {
             createRectPoint();
         if (comboBoxCreate.getValue().equals("Отрезок"))
             createLinePoint();
-        if (comboBoxCreate.getValue().equals("Кольцо"))
-            createRingPoint();
+//        if (comboBoxCreate.getValue().equals("Кольцо"))
+//            createRingPoint();
         if (comboBoxCreate.getValue().equals("Цветок"))
             createFlowerPoint();
     }
@@ -207,9 +207,15 @@ public class Controller {
         double x = Double.parseDouble(coordinateX);
         double y = Double.parseDouble(coordinateY);
         double r = Double.parseDouble(radius);
+        GraphicsContext gc = c.getGraphicsContext2D();
 
         Point p = new Point(x, y);
+        PrCircle circle = new PrCircle(p, r);
 
+        circle.show(gc);
+
+        arrCircle[jC] = circle;
+        ++jC;
     }
     // Функция по перемещению круга
     public void moveToCircle() {
@@ -286,9 +292,16 @@ public class Controller {
         String radius = sizeField.getText();
         double x = Double.parseDouble(coordinateX);
         double y = Double.parseDouble(coordinateY);
-        double r = Double.parseDouble(radius);
+        double s = Double.parseDouble(radius);
+        GraphicsContext gc = c.getGraphicsContext2D();
 
         Point p = new Point(x, y);
+        PrSquare square = new PrSquare(p, s);
+
+        square.show(gc);
+
+        arrSquare[jS] = square;
+        ++jS;
     }
 
     public void moveToRect() {
@@ -364,9 +377,16 @@ public class Controller {
         String radius = sizeField.getText();
         double x = Double.parseDouble(coordinateX);
         double y = Double.parseDouble(coordinateY);
-        double r = Double.parseDouble(radius);
+        double s = Double.parseDouble(radius);
+        GraphicsContext gc = c.getGraphicsContext2D();
 
         Point p = new Point(x, y);
+        PrLine line = new PrLine(p, s);
+
+        line.show(gc);
+
+        arrLine[jL] = line;
+        ++jL;
     }
 
     public void moveToLine() {
@@ -438,16 +458,25 @@ public class Controller {
         dialog.setText("Кольцо №" + iR + " создан!");
     }
 
-    public void createRingPoint(){
-        String coordinateX = layoutCraeteX.getText();
-        String coordinateY = layoutCraeteY.getText();
-        String radius = sizeField.getText();
-        double x = Double.parseDouble(coordinateX);
-        double y = Double.parseDouble(coordinateY);
-        double r = Double.parseDouble(radius);
-
-        Point p = new Point(x, y);
-    }
+//    public void createRingPoint(){
+//        String coordinateX = layoutCraeteX.getText();
+//        String coordinateY = layoutCraeteY.getText();
+//        String size = sizeField.getText();
+//        String size2 = sizeField2.getText();
+//        double x = Double.parseDouble(coordinateX);
+//        double y = Double.parseDouble(coordinateY);
+//        double s1 = Double.parseDouble(size);
+//        double s2 = Double.parseDouble(size2);
+//        GraphicsContext gc = c.getGraphicsContext2D();
+//
+//        Point p = new Point(x, y);
+//        PrRing ring = new PrRing(p, r);
+//
+//        ring.show(gc);
+//
+//        arrSquare[jS] = square;
+//        ++jS;
+//    }
 
     public void moveToRing() {
         PrRing ring;
