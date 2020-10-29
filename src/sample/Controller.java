@@ -6,10 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import primitives.Ellipse;
-import primitives.PrCircle;
-import primitives.PrLine;
-import primitives.PrSquare;
+import primitives.*;
 
 public class Controller {
     @FXML
@@ -71,6 +68,16 @@ public class Controller {
     private byte jE = 0;
     private byte dE = 0;
 
+    private byte iRE = 0;
+    private Rectangle[] arrRectangle = new Rectangle[20];
+    private byte jRE = 0;
+    private byte dRE = 0;
+
+    private byte iRH = 0;
+    private Rhombus[] arrRhombus = new Rhombus[20];
+    private byte jRH = 0;
+    private byte dRH = 0;
+
     // Метод создает элементы в comboBoxCreate
 
     @FXML
@@ -97,6 +104,10 @@ public class Controller {
             createLine();
         if (comboBoxCreate.getValue().equals("Эллипс"))
             createEllipse();
+        if (comboBoxCreate.getValue().equals("Прямоугольник"))
+            createRectangle();
+        if (comboBoxCreate.getValue().equals("Ромб"))
+            createRhombus();
     }
 
     public void buttonCreateRandom() {
@@ -108,6 +119,10 @@ public class Controller {
             createLineEmpty();
         if (comboBoxCreate.getValue().equals("Эллипс"))
             createEllipseEmpty();
+        if (comboBoxCreate.getValue().equals("Прямоугольник"))
+            createRectangleEmpty();
+        if (comboBoxCreate.getValue().equals("Ромб"))
+            createRhombusEmpty();
     }
 
     // Метод обработки кнопки "Удалить"
@@ -128,6 +143,14 @@ public class Controller {
             dE = 1;
             deleteEllipse();
         }
+        if (comboBoxDelete.getValue().equals("Прямоугольник")) {
+            dRE = 1;
+            deleteRectangle();
+        }
+        if (comboBoxDelete.getValue().equals("Ромб")) {
+            dRH = 1;
+            deleteRhombus();
+        }
     }
 
 
@@ -141,6 +164,10 @@ public class Controller {
             moveToLine();
         if (comboBoxMove.getValue().equals("Эллипс"))
             moveToEllipse();
+        if (comboBoxMove.getValue().equals("Прямоугольник"))
+            moveToRectangle();
+        if (comboBoxMove.getValue().equals("Ромб"))
+            moveToRhombus();
     }
 
     // Метод обработки кнопки "Вращать"
@@ -431,6 +458,142 @@ public class Controller {
             ellipse.delete(gc);
             ellipse.rotate();
             ellipse.show(gc);
+        }
+    }
+
+
+    // ...
+    // Следующие методы только
+    // по работе с прямоугольником
+    // ...
+
+
+    public void createRectangle() {
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size1 = sizeField.getText();
+        String size2 = sizeField2.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double s1 = Double.parseDouble(size1);
+        double s2 = Double.parseDouble(size2);
+
+        Rectangle rect = new Rectangle(x, y, s1, s2);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        rect.show(gc);
+        arrRectangle[jRE] = rect;
+        ++jRE;
+
+        ++iRE;
+        dialog.setText("Прямоугольник №" + iRE + " создан!");
+    }
+
+    public void createRectangleEmpty() {
+        Rectangle rect = new Rectangle();
+        GraphicsContext gc = c.getGraphicsContext2D();
+        rect.show(gc);
+        arrRectangle[jRE] = rect;
+        ++jRE;
+
+        ++iRE;
+        dialog.setText("Прямоугольник №" + iRE + " создан!");
+    }
+
+    public void moveToRectangle() {
+        Rectangle rect;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        String coordinateX = layoutMoveX.getText();
+        String coordinateY = layoutMoveY.getText();
+        double addX = Double.parseDouble(coordinateX);
+        double addY = Double.parseDouble(coordinateY);
+        deleteRectangle();
+        for (int k = 0; k < jRE; k++) {
+            rect = arrRectangle[k];
+            rect.move(addX, addY, gc);
+        }
+    }
+
+    public void deleteRectangle() {
+        Rectangle rect;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        for (int k = 0; k < jRE; k++) {
+            rect = arrRectangle[k];
+            rect.delete(gc);
+        }
+        // Если была нажата кнопка "Удалить" то очищаем массив
+        if (dRE == 1) {
+            for (int k = 0; k < jRE; k++) {
+                arrRectangle[k] = null;
+            }
+            dRE = 0;
+            jRE = 0;
+        }
+    }
+
+
+    // ...
+    // Следующие методы только
+    // по работе с ромбом
+    // ...
+
+
+    public void createRhombus() {
+        String coordinateX = layoutCraeteX.getText();
+        String coordinateY = layoutCraeteY.getText();
+        String size1 = sizeField.getText();
+        double x = Double.parseDouble(coordinateX);
+        double y = Double.parseDouble(coordinateY);
+        double s = Double.parseDouble(size1);
+
+        Rhombus rhombus = new Rhombus(x, y ,s);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        rhombus.show(gc);
+        arrRhombus[jRH] = rhombus;
+        ++jRH;
+
+        ++iRH;
+        dialog.setText("Ромб №" + iRH + " создан!");
+    }
+
+    public void createRhombusEmpty() {
+        Rhombus rhombus = new Rhombus();
+        GraphicsContext gc = c.getGraphicsContext2D();
+        rhombus.show(gc);
+        arrRhombus[jRH] = rhombus;
+        ++jRH;
+
+        ++iRH;
+        dialog.setText("Ромб №" + iRH + " создан!");
+    }
+
+    public void moveToRhombus() {
+        Rhombus rhombus;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        String coordinateX = layoutMoveX.getText();
+        String coordinateY = layoutMoveY.getText();
+        double addX = Double.parseDouble(coordinateX);
+        double addY = Double.parseDouble(coordinateY);
+        deleteRhombus();
+        for (int k = 0; k < jRH; k++) {
+            rhombus = arrRhombus[k];
+            rhombus.move(addX, addY, gc);
+        }
+    }
+
+    public void deleteRhombus() {
+        Rhombus rhombus;
+        GraphicsContext gc = c.getGraphicsContext2D();
+        for (int k = 0; k < jRH; k++) {
+            rhombus = arrRhombus[k];
+            rhombus.delete(gc);
+        }
+        // Если была нажата кнопка "Удалить" то очищаем массив
+        if (dRH == 1) {
+            for (int k = 0; k < jRH; k++) {
+                arrRhombus[k] = null;
+            }
+            dRH = 0;
+            jRH = 0;
         }
     }
 }
