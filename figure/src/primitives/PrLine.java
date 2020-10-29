@@ -9,8 +9,6 @@ public class PrLine extends TFigure {
     // Поле класса
     private double size ;
 
-
-
     public PrLine(double coordinateX, double coordinateY, double size) {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;

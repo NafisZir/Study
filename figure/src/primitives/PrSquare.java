@@ -9,8 +9,6 @@ public class PrSquare extends TFigure{
     // Поле класса
     private double size;
 
-    Random random = new Random();
-
     public PrSquare(double coordinateX, double coordinateY, double size) {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
@@ -18,11 +16,13 @@ public class PrSquare extends TFigure{
     }
 
     public PrSquare() {
+        Random random = new Random();
         this.coordinateX = (random.nextDouble()*500.0);
         this.coordinateY = (random.nextDouble()*500.0);
         this.size = (random.nextDouble()*100.0);
     }
 
+    @Override
     public void show(GraphicsContext gc){
         gc.setFill(Color.RED);
         gc.fillRect(coordinateX, coordinateY, size, size);
@@ -33,6 +33,7 @@ public class PrSquare extends TFigure{
         gc.fillRect(coordinateX - 1, coordinateY - 1, size + 2, size + 2);
     }
 
+    @Override
     public void move(double x, double y, GraphicsContext gc){
         this.coordinateX += x;
         this.coordinateY += y;

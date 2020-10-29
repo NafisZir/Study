@@ -9,8 +9,6 @@ public class PrCircle extends TFigure{
     // Поле класса
     protected double radius;
 
-
-
     // Конструктор 1, если пользователь ввел значения
     public PrCircle(double coordinateX, double coordinateY, double radius) {
         this.coordinateX = coordinateX;
