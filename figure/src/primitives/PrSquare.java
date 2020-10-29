@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class PrSquare extends TFigure{
     // Поле класса
-    private double size;
+    protected double size;
 
     public PrSquare(double coordinateX, double coordinateY, double size) {
         this.coordinateX = coordinateX;

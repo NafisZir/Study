@@ -76,12 +76,12 @@ public class Controller {
     @FXML
     public void initialize() {
         comboBoxCreate.getItems().removeAll(comboBoxCreate.getItems());
-        comboBoxCreate.getItems().addAll("Круг", "Отрезок", "Квадрат", "Эллипс");
+        comboBoxCreate.getItems().addAll("Круг", "Отрезок", "Квадрат", "Эллипс", "Прямоугольник", "Ромб");
         comboBoxCreate.getSelectionModel().select("Выберите примитив");
         comboBoxDelete.getItems().removeAll(comboBoxDelete.getItems());
-        comboBoxDelete.getItems().addAll("Круг", "Отрезок", "Квадрат", "Эллипс");
+        comboBoxDelete.getItems().addAll("Круг", "Отрезок", "Квадрат", "Эллипс", "Прямоугольник", "Ромб");
         comboBoxMove.getItems().removeAll(comboBoxMove.getItems());
-        comboBoxMove.getItems().addAll("Круг", "Отрезок", "Квадрат", "Эллипс");
+        comboBoxMove.getItems().addAll("Круг", "Отрезок", "Квадрат", "Эллипс", "Прямоугольник", "Ромб");
         comboBoxRotate.getItems().removeAll(comboBoxRotate.getItems());
         comboBoxRotate.getItems().addAll("Эллипс");
     }
