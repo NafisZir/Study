@@ -455,9 +455,7 @@ public class Controller {
         GraphicsContext gc = c.getGraphicsContext2D();
         for (int k = 0; k < jE; k++) {
             ellipse = arrEllipse[k];
-            ellipse.delete(gc);
-            ellipse.rotate();
-            ellipse.show(gc);
+            ellipse.rotate(gc);
         }
     }
 

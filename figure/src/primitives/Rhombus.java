@@ -22,8 +22,33 @@ public class Rhombus extends PrSquare{
 
     @Override
     public void show(GraphicsContext gc){
+        double rotationCenterX = (this.coordinateX + this.size) / 2;
+        double rotationCenterY = (this.coordinateY + this.size) / 2;
+
+        gc.save();
+
+        gc.translate(rotationCenterX, rotationCenterY);
+        gc.rotate(45);
+        gc.translate(-rotationCenterX, -rotationCenterY);
         gc.setFill(Color.RED);
         gc.fillRect(coordinateX, coordinateY, size, size);
-        gc.rotate(90);
+
+        gc.restore();
+    }
+
+    @Override
+    public void delete(GraphicsContext gc){
+        double rotationCenterX = (this.coordinateX + this.size) / 2;
+        double rotationCenterY = (this.coordinateY + this.size) / 2;
+
+        gc.save();
+
+        gc.translate(rotationCenterX, rotationCenterY);
+        gc.rotate(45);
+        gc.translate(-rotationCenterX, -rotationCenterY);
+        gc.setFill(Color.grayRgb(244));
+        gc.fillRect(coordinateX - 1, coordinateY - 1, size + 2, size + 2);
+
+        gc.restore();
     }
 }

@@ -23,10 +23,14 @@ public class Ellipse extends PrCircle{
         this.radius2 = random.nextDouble()*50.0;
     }
 
-    public void rotate(){
+    public void rotate(GraphicsContext gc){
+        delete(gc);
+
         double s = this.radius;
         this.radius = this.radius2;
         this.radius2 = s;
+
+        show(gc);
     }
 
     @Override
