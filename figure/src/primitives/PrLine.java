@@ -32,11 +32,4 @@ public class PrLine extends TFigure {
         gc.setFill(Color.grayRgb(244));
         gc.fillRect(coordinateX - 1, coordinateY, 4, size + 3);
     }
-
-    @Override
-    public void move(double addX, double addY, GraphicsContext gc){
-        this.coordinateX += addX;
-        this.coordinateY += addY;
-        show(gc);
-    }
 }

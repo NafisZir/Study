@@ -9,5 +9,9 @@ public abstract class TFigure {
     public TFigure() { }
 
     public abstract void show(GraphicsContext gc);
-    public abstract void move(double addX, double addY, GraphicsContext gc);
+    public final void move(double addX, double addY, GraphicsContext gc){
+        this.coordinateX += addX;
+        this.coordinateY += addY;
+        show(gc);
+    }
 }

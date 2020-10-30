@@ -32,11 +32,4 @@ public class PrSquare extends TFigure{
         gc.setFill(Color.grayRgb(244));
         gc.fillRect(coordinateX - 1, coordinateY - 1, size + 2, size + 2);
     }
-
-    @Override
-    public void move(double x, double y, GraphicsContext gc){
-        this.coordinateX += x;
-        this.coordinateY += y;
-        show(gc);
-    }
 }
