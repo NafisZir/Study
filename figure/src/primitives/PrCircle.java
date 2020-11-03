@@ -31,6 +31,7 @@ public class PrCircle extends TFigure{
         gc.fillOval(this.coordinateX- this.radius, this.coordinateY - this.radius, this.radius*2, this.radius*2);
     }
 
+    @Override
     public void delete(GraphicsContext gc){
         gc.setFill(Color.grayRgb(244));
         gc.fillOval(this.coordinateX- (this.radius + 1), this.coordinateY - (this.radius + 1), this.radius*2 + 2, this.radius*2 + 2);

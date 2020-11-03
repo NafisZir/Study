@@ -28,6 +28,7 @@ public class PrSquare extends TFigure{
         gc.fillRect(coordinateX, coordinateY, size, size);
     }
 
+    @Override
     public void delete(GraphicsContext gc){
         gc.setFill(Color.grayRgb(244));
         gc.fillRect(coordinateX - 1, coordinateY - 1, size + 2, size + 2);

@@ -28,6 +28,7 @@ public class PrLine extends TFigure {
         gc.fillRect(coordinateX, coordinateY, 2, size);
     }
 
+    @Override
     public void delete(GraphicsContext gc){
         gc.setFill(Color.grayRgb(244));
         gc.fillRect(coordinateX - 1, coordinateY, 4, size + 3);
