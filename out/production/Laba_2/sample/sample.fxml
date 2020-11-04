@@ -8,41 +8,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane prefHeight="510.0" prefWidth="300.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="547.0" prefWidth="306.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="65.0" layoutY="390.0" text="Y:">
+            <Label layoutX="67.0" layoutY="457.0" text="Y:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="layoutMoveX" layoutX="88.0" layoutY="347.0" prefHeight="26.0" prefWidth="54.0" />
-            <Label layoutX="64.0" layoutY="350.0" text="Х:">
+            <TextField fx:id="layoutMoveX" layoutX="88.0" layoutY="417.0" prefHeight="26.0" prefWidth="54.0" />
+            <Label layoutX="67.0" layoutY="419.0" text="Х:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboBoxMove" layoutX="10.0" layoutY="294.0" prefHeight="26.0" prefWidth="163.0" />
-            <Label layoutX="17.0" layoutY="269.0" text="Переместить" textFill="#df2525">
+            <ComboBox fx:id="comboBoxMove" layoutX="11.0" layoutY="380.0" prefHeight="26.0" prefWidth="163.0" />
+            <Label layoutX="13.0" layoutY="343.0" text="Переместить" textFill="#df2525">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="buttonMove" layoutX="202.0" layoutY="294.0" mnemonicParsing="false" onAction="#buttonMove" text="Переместить" />
-            <ComboBox fx:id="comboBoxDelete" layoutX="11.0" layoutY="224.0" prefHeight="26.0" prefWidth="163.0" />
-            <Label layoutX="9.0" layoutY="198.0" text="Удалить" textFill="#da2525">
+            <Button fx:id="buttonMove" layoutX="198.0" layoutY="380.0" mnemonicParsing="false" onAction="#buttonMove" text="Переместить" />
+            <ComboBox fx:id="comboBoxDelete" layoutX="11.0" layoutY="307.0" prefHeight="26.0" prefWidth="163.0" />
+            <Label layoutX="14.0" layoutY="271.0" text="Удалить" textFill="#da2525">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="buttonDelete" layoutX="202.0" layoutY="224.0" mnemonicParsing="false" onAction="#buttonDelete" prefHeight="26.0" prefWidth="88.0" text="Удалить" />
-            <Label fx:id="dialog" alignment="CENTER" layoutX="38.0" layoutY="503.0" prefHeight="22.0" prefWidth="223.0" textFill="#ed0000">
+            <Button fx:id="buttonDelete" layoutX="201.0" layoutY="307.0" mnemonicParsing="false" onAction="#buttonDelete" prefHeight="26.0" prefWidth="88.0" text="Удалить" />
+            <Label fx:id="dialog" alignment="CENTER" layoutX="38.0" layoutY="585.0" prefHeight="22.0" prefWidth="223.0" textFill="#ed0000">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="layoutMoveY" layoutX="88.0" layoutY="388.0" prefHeight="26.0" prefWidth="54.0" />
+            <TextField fx:id="layoutMoveY" layoutX="88.0" layoutY="455.0" prefHeight="26.0" prefWidth="54.0" />
             <TextField fx:id="layoutCraeteX" layoutX="88.0" layoutY="79.0" prefHeight="26.0" prefWidth="54.0" />
             <TextField fx:id="layoutCraeteY" layoutX="88.0" layoutY="116.0" prefHeight="26.0" prefWidth="54.0" />
             <Label layoutX="61.0" layoutY="82.0" text="Х:">
@@ -61,28 +61,31 @@
                </font>
             </Label>
             <TextField fx:id="sizeField" layoutX="88.0" layoutY="156.0" prefHeight="26.0" prefWidth="54.0" />
-            <Button fx:id="buttonCreateRandom" layoutX="202.0" layoutY="79.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Создать р." onAction="#buttonCreateRandom"/>
-            <Label layoutX="150.0" layoutY="159.0" text="Размер 2:">
+            <Button fx:id="buttonCreateRandom" layoutX="194.0" layoutY="79.0" mnemonicParsing="false" onAction="#buttonCreateRandom" prefHeight="26.0" prefWidth="95.0" text="Занести в к.р." />
+            <Label layoutX="13.0" layoutY="198.0" text="Размер 2:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="sizeField2" layoutX="218.0" layoutY="157.0" prefHeight="18.0" prefWidth="54.0" />
-            <ComboBox fx:id="comboBoxRotate" layoutX="11.0" layoutY="462.0" prefHeight="26.0" prefWidth="163.0" />
-            <Button fx:id="buttonRotate" layoutX="202.0" layoutY="462.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Вращать" onAction="#buttonRotate"/>
-            <Label layoutX="17.0" layoutY="436.0" text="Вращать" textFill="#ed2525">
+            <TextField fx:id="sizeField2" layoutX="88.0" layoutY="195.0" prefHeight="18.0" prefWidth="54.0" />
+            <ComboBox fx:id="comboBoxRotate" layoutX="11.0" layoutY="514.0" prefHeight="26.0" prefWidth="163.0" />
+            <Button fx:id="buttonRotate" layoutX="202.0" layoutY="514.0" mnemonicParsing="false" onAction="#buttonRotate" prefHeight="26.0" prefWidth="88.0" text="Вращать" />
+            <Label layoutX="12.0" layoutY="482.0" text="Вращать" textFill="#ed2525">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
+            <Button fx:id="buttonMoveInBase" layoutX="174.0" layoutY="417.0" mnemonicParsing="false" onAction="#buttonMoveBasePoint" text="Переместить в б.т." />
+            <Button fx:id="buttonShow" layoutX="194.0" layoutY="156.0" mnemonicParsing="false" onAction="#buttonShow" prefHeight="26.0" prefWidth="95.0" text="Показать" />
+            <Button fx:id="buttonContainerRandom" layoutX="194.0" layoutY="116.0" mnemonicParsing="false" onAction="#buttonContainerRandom" prefHeight="26.0" prefWidth="95.0" text="Заполнить р." />
          </children></AnchorPane>
-      <Canvas fx:id="c" height="859.0" layoutX="298.0" width="1968.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Canvas fx:id="c" height="859.0" layoutX="306.0" width="1968.0" AnchorPane.bottomAnchor="-218.0" AnchorPane.leftAnchor="306.0" AnchorPane.rightAnchor="-1668.0" AnchorPane.topAnchor="0.0" />
       <Label layoutX="14.0" layoutY="14.0" text="Создать" textFill="#c72a2a">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="buttonCreate" layoutX="200.0" layoutY="44.0" mnemonicParsing="false" onAction="#buttonCreate" prefHeight="26.0" prefWidth="88.0" text="Создать" />
+      <Button fx:id="buttonCreate" layoutX="193.0" layoutY="44.0" mnemonicParsing="false" onAction="#buttonCreate" prefHeight="26.0" prefWidth="95.0" text="Занести в к." />
       <ComboBox fx:id="comboBoxCreate" layoutX="14.0" layoutY="44.0" prefHeight="26.0" prefWidth="163.0" promptText="Выберите примитив" />
    </children>
 </AnchorPane>

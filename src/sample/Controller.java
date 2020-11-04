@@ -10,9 +10,9 @@ import primitives.*;
 
 import java.util.Random;
 
-public class Controller {
+public class Controller{
     public final int NUMBER_FROM_TASK = 35;
-    public final int QUANTITY_FIGURES = 6 - 1;
+    public final int QUANTITY_FIGURES = 6;
 
     @FXML
     private ComboBox comboBoxDelete;
@@ -45,7 +45,7 @@ public class Controller {
     private TextField sizeField2;
 
     @FXML
-    private Label dialog;
+    public Label dialog;
 
     @FXML
     private Canvas c;
@@ -136,6 +136,7 @@ public class Controller {
             if(value == 6)
                 createRhombusEmpty();
         }
+        dialog.requestFocus();
     }
 
 
@@ -147,6 +148,7 @@ public class Controller {
             figure = container[i];
             figure.show(gc);
         }
+        dialog.requestFocus();
     }
 
 
@@ -160,31 +162,31 @@ public class Controller {
             deleteSquare();
         if (comboBoxDelete.getValue().equals("Отрезок"))
             deleteLine();
+        dialog.requestFocus();
     }
 
 
     // Метод обработки кнопки "Переместить"
     public void buttonMove() {
-    String coordinateX = layoutMoveX.getText();
-    String coordinateY = layoutMoveY.getText();
-    double addX = Double.parseDouble(coordinateX);
-    double addY = Double.parseDouble(coordinateY);
+        String coordinateX = layoutMoveX.getText();
+        String coordinateY = layoutMoveY.getText();
+        double addX = Double.parseDouble(coordinateX);
+        double addY = Double.parseDouble(coordinateY);
 
-    if (comboBoxMove.getValue().equals("Все"))
-        moveToContainer(addX, addY);
-    if (comboBoxMove.getValue().equals("Круг"))
-        moveToCircle(addX, addY);
-    if (comboBoxMove.getValue().equals("Квадрат"))
-        moveToSquare(addX, addY);
-    if (comboBoxMove.getValue().equals("Отрезок"))
-        moveToLine(addX, addY);
+        if (comboBoxMove.getValue().equals("Все"))
+            moveToContainer(addX, addY);
+        if (comboBoxMove.getValue().equals("Круг"))
+            moveToCircle(addX, addY);
+        if (comboBoxMove.getValue().equals("Квадрат"))
+            moveToSquare(addX, addY);
+        if (comboBoxMove.getValue().equals("Отрезок"))
+            moveToLine(addX, addY);
+        dialog.requestFocus();
     }
 
 
     // Метод обработки кнопки "Переместить в базовую точку"
     public void buttonMoveBasePoint(){
-        TFigure figure;
-        GraphicsContext gc = c.getGraphicsContext2D();
         String coordinateX = layoutMoveX.getText();
         String coordinateY = layoutMoveY.getText();
         double x = Double.parseDouble(coordinateX);
@@ -205,6 +207,7 @@ public class Controller {
         if (comboBoxMove.getValue().equals("Отрезок")){
             moveToBaseLine(x, y);
         }
+        dialog.requestFocus();
     }
 
 
@@ -212,8 +215,8 @@ public class Controller {
     public void buttonRotate() {
         if (comboBoxRotate.getValue().equals("Эллипс"))
             rotateEllipse();
+        dialog.requestFocus();
     }
-
 
 
     // Создаем фигуры с заданными значениями
