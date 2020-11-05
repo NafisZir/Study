@@ -12,11 +12,7 @@ public abstract class TFigure {
 
     public abstract void delete(GraphicsContext gc);
 
-    public final void move(double addX, double addY, GraphicsContext gc){
-        this.coordinateX += addX;
-        this.coordinateY += addY;
-        show(gc);
-    }
+    public abstract void move(double addX, double addY, GraphicsContext gc);
 
     public final void basePoint(double x, double y, GraphicsContext gc){
         this.coordinateX = x;

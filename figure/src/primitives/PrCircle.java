@@ -36,4 +36,10 @@ public class PrCircle extends TFigure{
         gc.setFill(Color.grayRgb(244));
         gc.fillOval(this.coordinateX- (this.radius + 1), this.coordinateY - (this.radius + 1), this.radius*2 + 2, this.radius*2 + 2);
     }
+
+    public void move(double addX, double addY, GraphicsContext gc){
+        this.coordinateX += addX;
+        this.coordinateY += addY;
+        show(gc);
+    }
 }
