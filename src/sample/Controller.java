@@ -334,7 +334,8 @@ public class Controller{
 
         for (int i = 0; i < j; i++) {
             figure = container[i];
-            figure.delete(gc);
+            if(figure instanceof PrCircle)
+                figure.delete(gc);
         }
 
         for (int i = 0; i < j; i++) {
@@ -343,6 +344,13 @@ public class Controller{
             if(figure instanceof PrCircle)
                 figure.move(x, y, gc);
         }
+
+        for (int i = 0; i < j; i++) {
+            figure = container[i];
+
+            if(!(figure instanceof PrCircle))
+                figure.show(gc);
+        }
     }
     public void moveToSquare(double x, double y){
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -350,7 +358,8 @@ public class Controller{
 
         for (int i = 0; i < j; i++) {
             figure = container[i];
-            figure.delete(gc);
+            if(figure instanceof PrSquare)
+                figure.delete(gc);
         }
 
         for (int i = 0; i < j; i++) {
@@ -359,6 +368,13 @@ public class Controller{
             if(figure instanceof PrSquare)
                 figure.move(x, y, gc);
         }
+
+        for (int i = 0; i < j; i++) {
+            figure = container[i];
+
+            if(!(figure instanceof PrSquare))
+                figure.show(gc);
+        }
     }
     public void moveToLine(double x, double y){
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -366,7 +382,8 @@ public class Controller{
 
         for (int i = 0; i < j; i++) {
             figure = container[i];
-            figure.delete(gc);
+            if(figure instanceof PrLine)
+                figure.delete(gc);
         }
 
         for (int i = 0; i < j; i++) {
@@ -374,6 +391,13 @@ public class Controller{
 
             if(figure instanceof PrLine)
                 figure.move(x, y, gc);
+        }
+
+        for (int i = 0; i < j; i++) {
+            figure = container[i];
+
+            if(!(figure instanceof PrLine))
+                figure.show(gc);
         }
     }
 

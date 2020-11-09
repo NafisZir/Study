@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Rhombus extends PrSquare{
     private double g = Math.toRadians(60);
-    private double p = 35;
+    private double p = 25;
 
     public Rhombus(double coordinateX, double coordinateY, double size) {
         this.coordinateX = coordinateX;
