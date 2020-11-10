@@ -5,7 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import primitives.Container;
+import primitives.List;
 
 public class Controller{
     @FXML
@@ -20,45 +20,45 @@ public class Controller{
     @FXML
     private Canvas c;
 
-    Container container;
+    List list;
 
     public void createEmptyContainer(){
-        container = new Container();
+        list = new List();
         dialog.setText("Пустой контейнер создан");
     }
 
     public void createContainer(){
-        container = new Container(1);
+        list = new List(1);
         dialog.setText("Контейнер создан и заполнен");
     }
 
     public void createOneFigure(){
-        container.addFigureRandom();
+        list.addFigureRandom();
         dialog.setText("Случайная фигура в контейнере");
     }
 
     public void showFigures(){
         GraphicsContext gc = c.getGraphicsContext2D();
-        container.showAll(gc);
+        list.showAll(gc);
     }
 
     public void moveFigures(){
         GraphicsContext gc = c.getGraphicsContext2D();
         double x = Double.parseDouble(layoutMoveX.getText());
         double y = Double.parseDouble(layoutMoveY.getText());
-        container.moveAll(x, y, gc);
+        list.moveAll(x, y, gc);
     }
 
     public void deleteFigures(){
         GraphicsContext gc = c.getGraphicsContext2D();
-        container.deleteAll(gc);
+        list.deleteAll(gc);
         dialog.setText("Все фигуры стерты");
     }
 
     public void deleteContainer(){
         GraphicsContext gc = c.getGraphicsContext2D();
-        container.deleteContainer(gc);
-        container = null;
+        list.deleteList(gc);
+        list = null;
         dialog.setText("Контейнер уничтожен");
     }
 }
