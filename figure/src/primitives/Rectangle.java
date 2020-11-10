@@ -8,13 +8,6 @@ import java.util.Random;
 public class Rectangle extends PrSquare{
     private double size2;
 
-    public Rectangle(double coordinateX, double coordinateY, double size, double size2) {
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
-        this.size = size;
-        this.size2 = size2;
-    }
-
     public Rectangle() {
         Random random = new Random();
         this.coordinateX = (random.nextDouble()*500.0);

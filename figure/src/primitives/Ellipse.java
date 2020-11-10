@@ -8,13 +8,6 @@ import java.util.Random;
 public class Ellipse extends PrCircle{
     private double radius2;
 
-    public Ellipse(double x, double y, double r1, double r2){
-        this.coordinateX = x;
-        this.coordinateY = y;
-        this.radius = r1;
-        this.radius2 = r2;
-    }
-
     public Ellipse(){
         Random random = new Random();
         this.coordinateX = (random.nextDouble()*1000.0);
@@ -23,15 +16,6 @@ public class Ellipse extends PrCircle{
         this.radius2 = random.nextDouble()*50.0;
     }
 
-    public void rotate(GraphicsContext gc){
-        delete(gc);
-
-        double s = this.radius;
-        this.radius = this.radius2;
-        this.radius2 = s;
-
-        show(gc);
-    }
 
     @Override
     public void show(GraphicsContext gc){

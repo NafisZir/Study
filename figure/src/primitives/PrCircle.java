@@ -6,17 +6,9 @@ import javafx.scene.paint.Color;
 import java.util.Random;
 
 public class PrCircle extends TFigure{
-    // Поле класса
     protected double radius;
 
-    // Конструктор 1, если пользователь ввел значения
-    public PrCircle(double coordinateX, double coordinateY, double radius) {
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
-        this.radius = radius;
-    }
 
-    // Конструктор 2, если пользователь оставил ВСЕ поля пустыми
     public PrCircle() {
         Random random = new Random();
         this.coordinateX = (random.nextDouble()*1000.0);
@@ -24,7 +16,6 @@ public class PrCircle extends TFigure{
         this.radius = (random.nextDouble()*50.0);
     }
 
-    // метод создает круг на холсте
     @Override
     public void show(GraphicsContext gc){
         gc.setFill(Color.GREEN);
