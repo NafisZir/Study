@@ -1,3 +1,4 @@
+// комментарий ради комментария
 package sample;
 
 import javafx.fxml.FXML;
