@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/OOP.iml" filepath="$PROJECT_DIR$/OOP.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Laba_2.iml" filepath="$PROJECT_DIR$/Laba_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/figure/figure.iml" filepath="$PROJECT_DIR$/figure/figure.iml" />
+>>>>>>> d78638406fe2d2a6f63d9d4bfc5539cb17d87a64
     </modules>
   </component>
 </project>

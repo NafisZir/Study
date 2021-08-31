@@ -4,9 +4,9 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+<<<<<<< HEAD
 import primitives.*;
 
 public class Controller {
@@ -18,7 +18,11 @@ public class Controller {
 
     @FXML
     private ComboBox comboBoxMove;
+=======
+import primitives.List;
+>>>>>>> d78638406fe2d2a6f63d9d4bfc5539cb17d87a64
 
+public class Controller{
     @FXML
     private TextField layoutMoveX;
 
@@ -26,6 +30,7 @@ public class Controller {
     private TextField layoutMoveY;
 
     @FXML
+<<<<<<< HEAD
     private TextField layoutCraeteX;
 
     @FXML
@@ -39,10 +44,14 @@ public class Controller {
 
     @FXML
     private Label dialog;
+=======
+    public Label dialog;
+>>>>>>> d78638406fe2d2a6f63d9d4bfc5539cb17d87a64
 
     @FXML
     private Canvas c;
 
+<<<<<<< HEAD
     // Переменная считает количество кругов
     private byte iC = 0;
     // Массив для сохранения объектов
@@ -183,14 +192,31 @@ public class Controller {
 
         PrCircle circle = new PrCircle(x, y, r);
         // Объект для создания примитива на холсте
-        GraphicsContext gc = c.getGraphicsContext2D();
-        circle.show(gc);
-        arrCircle[jC] = circle;
-        ++jC;
-        ++iC;
-        dialog.setText("Круг №" + iC + " создан!");
+=======
+    List list;
+
+    public void createEmptyContainer(){
+        list = new List();
+        dialog.setText("Пустой контейнер создан");
     }
 
+    public void createContainer(){
+        list = new List(1);
+        dialog.setText("Контейнер создан и заполнен");
+    }
+
+    public void createOneFigure(){
+        list.addFigureRandom();
+        dialog.setText("Случайная фигура в контейнере");
+    }
+
+    public void showFigures(){
+>>>>>>> d78638406fe2d2a6f63d9d4bfc5539cb17d87a64
+        GraphicsContext gc = c.getGraphicsContext2D();
+        list.showAll(gc);
+    }
+
+<<<<<<< HEAD
     // Создаем круг с рандомными значениями
     public void createCircleRandom() {
         PrCircle circle = new PrCircle();
@@ -394,18 +420,22 @@ public class Controller {
 
     public void moveToLine() {
         PrLine line;
+=======
+    public void moveFigures(){
         GraphicsContext gc = c.getGraphicsContext2D();
-        String coordinateX = layoutMoveX.getText();
-        String coordinateY = layoutMoveY.getText();
-        double addX = Double.parseDouble(coordinateX);
-        double addY = Double.parseDouble(coordinateY);
-        deleteLine();
-        for (int k = 0; k < jL; k++) {
-            line = arrLine[k];
-            line.move(addX, addY, gc);
-        }
+        double x = Double.parseDouble(layoutMoveX.getText());
+        double y = Double.parseDouble(layoutMoveY.getText());
+        list.moveAll(x, y, gc);
     }
 
+    public void deleteFigures(){
+>>>>>>> d78638406fe2d2a6f63d9d4bfc5539cb17d87a64
+        GraphicsContext gc = c.getGraphicsContext2D();
+        list.deleteAll(gc);
+        dialog.setText("Все фигуры стерты");
+    }
+
+<<<<<<< HEAD
     public void deleteLine() {
         PrLine line;
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -595,4 +625,12 @@ public class Controller {
             jF = 0;
         }
     }
+=======
+    public void deleteContainer(){
+        GraphicsContext gc = c.getGraphicsContext2D();
+        list.deleteList(gc);
+        list = null;
+        dialog.setText("Контейнер уничтожен");
+    }
+>>>>>>> d78638406fe2d2a6f63d9d4bfc5539cb17d87a64
 }
